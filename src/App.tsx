@@ -1,26 +1,91 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import * as React from "react";
+import "./App.css";
 
-function App() {
+const App = () => {
+  const [name, setName] = React.useState("");
+  const [age, setAge] = React.useState("");
+  const [fav_color, setFavColor] = React.useState("");
+
+  const onSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+  };
+
+  const clear = () => {
+    setName("");
+    setAge("");
+    setFavColor("");
+  };
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div className="pa-4">
+      <div className="d-flex v-center h-center">
+        <div className="w-50">
+          <h2>Fill the Form!</h2>
+          <form onSubmit={onSubmit}>
+            <div className="pa-1">
+              <div>
+                <label>Name</label>
+              </div>
+              <input
+                className="my-input full-width"
+                type="text"
+                name="name"
+                placeholder="Enter Name"
+              />
+            </div>
+
+            <div className="pa-1">
+              <div>
+                <label>Age</label>
+              </div>
+              <input
+                className="my-input full-width"
+                type="text"
+                name="age"
+                placeholder="Age"
+              />
+            </div>
+
+            <div className="pa-1">
+              <div>
+                <label>Favourite color</label>
+              </div>
+              <select name="fav_color" className="my-input full-width">
+                {[
+                  "red",
+                  "green",
+                  "blue",
+                  "yellow",
+                  "orange",
+                  "pink",
+                  "cyan",
+                  "grey",
+                  "black",
+                  "white",
+                  "skyblue",
+                ].map((color, index) => (
+                  <option value={color} key={color + index}>
+                    {color}
+                  </option>
+                ))}
+              </select>
+            </div>
+            <div className="pa-1">
+              <button type="submit" className="primary full-width">
+                Submit
+              </button>
+              <button onClick={clear} className="secondary full-width">
+                Clear
+              </button>
+            </div>
+          </form>
+        </div>
+        <div className="w-50 pa-4">
+          <p className="special-text">Jazli, 23 years old.</p>
+        </div>
+      </div>
     </div>
   );
-}
+};
 
 export default App;
